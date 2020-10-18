@@ -14,14 +14,11 @@ public class TodoService {
     private TodoDao todoDao;
 
     public List<Todo> getAllTodos(String username) {
-      List<Todo> todos = todoDao.findAll();
-
-        for (Todo todo:
-             todos) {
-            System.out.println(todo.getDescription());
-        }
-
         return todoDao.findAll();
+    }
+
+    public void deleteById(Long id) {
+        todoDao.deleteById(id);
     }
 
 }
