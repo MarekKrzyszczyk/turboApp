@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="todos")
+@Table(name = "todos")
 public class Todo {
 
     @Id
@@ -74,4 +74,5 @@ public class Todo {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }
