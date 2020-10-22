@@ -23,6 +23,25 @@ public class Todo {
     @Column
     private String username;
 
+    public Todo() {
+
+    }
+
+    public Todo(String description, boolean isDone, LocalDate targetDate, String username) {
+        this.description = description;
+        this.isDone = isDone;
+        this.targetDate = targetDate;
+        this.username = username;
+    }
+
+    public Todo(Long id, String description, boolean isDone, LocalDate targetDate, String username) {
+        this.id = id;
+        this.description = description;
+        this.isDone = isDone;
+        this.targetDate = targetDate;
+        this.username = username;
+    }
+
     public Long getId() {
         return id;
     }
@@ -55,18 +74,6 @@ public class Todo {
         this.targetDate = targetDate;
     }
 
-    public Todo(Long id, String description, boolean isDone, LocalDate targetDate, String username) {
-        this.id = id;
-        this.description = description;
-        this.isDone = isDone;
-        this.targetDate = targetDate;
-        this.username = username;
-    }
-
-    public Todo() {
-
-    }
-
     public String getUsername() {
         return username;
     }
@@ -74,5 +81,4 @@ public class Todo {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }

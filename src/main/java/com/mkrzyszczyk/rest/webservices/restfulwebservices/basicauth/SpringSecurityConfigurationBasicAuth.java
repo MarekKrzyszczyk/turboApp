@@ -1,4 +1,4 @@
-package com.mkrzyszczyk.rest.webservices.restfulwebservices.basic.auth;
+package com.mkrzyszczyk.rest.webservices.restfulwebservices.basicauth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,11 +12,12 @@ public class SpringSecurityConfigurationBasicAuth extends WebSecurityConfigurerA
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-                http
+        http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .httpBasic();
     }

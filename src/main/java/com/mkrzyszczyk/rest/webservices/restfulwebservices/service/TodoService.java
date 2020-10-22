@@ -31,4 +31,9 @@ public class TodoService {
         todoDao.deleteById(id);
     }
 
+    public Todo save(Todo todo) {
+        todoDao.save(todo);
+        return this.findById(todo.getId());
+    }
+
 }
