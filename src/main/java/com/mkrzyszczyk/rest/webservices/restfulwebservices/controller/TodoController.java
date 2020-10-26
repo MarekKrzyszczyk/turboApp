@@ -18,12 +18,12 @@ public class TodoController {
 
     @GetMapping("/users/{username}/todos")
     public List<Todo> getAllTodos(@PathVariable String username) {
-        return todoService.getAllTodos(username);
+        return todoService.findAll();
     }
 
     @GetMapping("/users/{username}/todos/{id}")
     public Todo getTodo(@PathVariable String username, @PathVariable Long id) {
-        return todoService.findById(id);
+        return (Todo) todoService.findById(id);
     }
 
     @DeleteMapping("/users/{username}/todos/{id}")

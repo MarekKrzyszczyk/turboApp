@@ -1,4 +1,4 @@
-package com.mkrzyszczyk.rest.webservices.restfulwebservices.basicauth;
+package com.mkrzyszczyk.rest.basicauth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

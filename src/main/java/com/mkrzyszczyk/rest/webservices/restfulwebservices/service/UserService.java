@@ -1,32 +1,25 @@
 package com.mkrzyszczyk.rest.webservices.restfulwebservices.service;
 
-import com.mkrzyszczyk.rest.webservices.restfulwebservices.dao.TodoDao;
 import com.mkrzyszczyk.rest.webservices.restfulwebservices.dao.UserDao;
-import com.mkrzyszczyk.rest.webservices.restfulwebservices.model.Todo;
 import com.mkrzyszczyk.rest.webservices.restfulwebservices.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TodoService extends AbstractService {
-
-    @Autowired
-    private TodoDao todoDao;
+public class UserService extends AbstractService {
 
     @Autowired
     private UserDao userDao;
 
 
-    public Todo save(Todo todo) {
-        todoDao.save(todo);
+    public void save(String username, String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodedPassword = encoder.encode(todo.getUsername());
+        String encodedPassword = encoder.encode(password);
         User user = new User();
-        user.setUsername(todo.getUsername());
+        user.setUsername(username);
         user.setPassword(encodedPassword);
         userDao.save(user);
-        return (Todo) super.findById(todo.getId());
     }
 
 }
