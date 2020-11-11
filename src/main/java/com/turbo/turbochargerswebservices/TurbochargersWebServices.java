@@ -1,13 +1,13 @@
-package com.mkrzyszczyk.rest.webservices.restfulwebservices;
+package com.turbo.turbochargerswebservices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestfulWebServicesApplication {
+public class TurbochargersWebServices {
 
     public static void main(String[] args) {
-        SpringApplication.run(RestfulWebServicesApplication.class, args);
+        SpringApplication.run(TurbochargersWebServices.class, args);
     }
 
 }
