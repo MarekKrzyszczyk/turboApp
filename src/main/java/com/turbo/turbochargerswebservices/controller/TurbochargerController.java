@@ -32,10 +32,16 @@ public class TurbochargerController {
         return new ResponseEntity<>(turbo, HttpStatus.OK);
     }
 
+    @PutMapping("/turbos/{id}")
+    public ResponseEntity<Turbocharger> updateTurboById(@PathVariable Long id, @RequestBody Turbocharger turbocharger) {
+        Turbocharger updatedTurbo = turbochargerService.addTurbo(turbocharger);
+        return new ResponseEntity<>(updatedTurbo, HttpStatus.OK);
+    }
+
     @PostMapping("/turbos")
     public ResponseEntity<Turbocharger> createTurbo(@RequestBody Turbocharger turbocharger) {
-        Turbocharger createdTurbocharger = turbochargerService.addTurbo(turbocharger);
-        return new ResponseEntity<>(createdTurbocharger, HttpStatus.CREATED);
+        Turbocharger createdTurbo = turbochargerService.addTurbo(turbocharger);
+        return new ResponseEntity<>(createdTurbo, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/turbos/{id}")
