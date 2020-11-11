@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column
     private String name;
