@@ -31,14 +31,6 @@ public class TurbochargerService {
         turbochargerRepository.deleteById(id);
     }
 
-    public void updateTurbo(Turbocharger turbocharger) {
-            Turbocharger turbo = findTurboById(turbocharger.getId());
-            turbo.setNumber(turbocharger.getNumber());
-            turbo.setModel(turbocharger.getModel());
-            turbo.setProducer(turbocharger.getProducer());
-            turbochargerRepository.save(turbo);
-        }
-
     public Turbocharger findTurboById(Long id) {
         Optional<Turbocharger> optTurbo = turbochargerRepository.findById(id);
         if (optTurbo.isPresent()) {
