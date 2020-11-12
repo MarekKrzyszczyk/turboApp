@@ -1,21 +1,19 @@
 package com.turbo.turbochargerswebservices.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "work_order")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "order_date")
     private LocalDate orderDate;
@@ -40,12 +38,54 @@ public class Order {
     @JoinColumn(name = "reason_id")
     private Reason reason;
 
-    public Order(Turbocharger turbocharger, List<Part> parts, Reason reason) {
-        this.turbocharger = turbocharger;
-        this.parts = parts;
-        this.reason = reason;
+    public Order() {
     }
 
-    public Order() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Turbocharger getTurbocharger() {
+        return turbocharger;
+    }
+
+    public void setTurbocharger(Turbocharger turbocharger) {
+        this.turbocharger = turbocharger;
+    }
+
+    public List<Part> getParts() {
+        return parts;
+    }
+
+    public void setParts(List<Part> parts) {
+        this.parts = parts;
+    }
+
+    public Reason getReason() {
+        return reason;
+    }
+
+    public void setReason(Reason reason) {
+        this.reason = reason;
     }
 }
