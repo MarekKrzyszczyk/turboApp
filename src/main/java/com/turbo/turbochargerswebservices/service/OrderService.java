@@ -36,7 +36,7 @@ public class OrderService {
         return optOrder.orElse(new Order());
     }
 
-    public Order createNewOrder(@RequestBody Order order) {
+    public Order createOrder(@RequestBody Order order) {
         orderRepository.save(order);
         return order;
     }

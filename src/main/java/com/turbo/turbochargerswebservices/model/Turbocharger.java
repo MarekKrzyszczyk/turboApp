@@ -24,12 +24,6 @@ public class Turbocharger {
     @OneToMany(mappedBy = "turbocharger")
     private List<Order> orders;
 
-    public Turbocharger(String number, String model, String producer) {
-        this.number = number;
-        this.model = model;
-        this.producer = producer;
-    }
-
     public Turbocharger() {
     }
 
