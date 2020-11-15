@@ -23,30 +23,30 @@ public class ReasonController {
 
     @GetMapping("/reasons")
     public List<Reason> listAllReasons() {
-      return reasonService.getAllReasons();
+      return reasonService.findAll();
     }
 
     @GetMapping("/reasons/{id}")
     public ResponseEntity<Reason> getReasonById(@PathVariable Long id) {
-        Reason reason = reasonService.findReasonById(id);
+        Reason reason = reasonService.findById(id);
         return new ResponseEntity<>(reason, HttpStatus.OK);
     }
 
     @PutMapping("/reasons/{id}")
     public ResponseEntity<Reason> updateReasonById(@RequestBody Reason reason) {
-        Reason updatedReason = reasonService.addReason(reason);
+        Reason updatedReason = reasonService.update(reason);
         return new ResponseEntity<>(updatedReason, HttpStatus.OK);
     }
 
     @PostMapping("/reasons")
     public ResponseEntity<Reason> createReason(@RequestBody Reason reason) {
-        Reason createdReason = reasonService.addReason(reason);
+        Reason createdReason = reasonService.save(reason);
         return new ResponseEntity<>(createdReason, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/reasons/{id}")
     public ResponseEntity<Reason> deleteReason(@PathVariable Long id) {
-        reasonService.deleteReason(id);
+        reasonService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 }

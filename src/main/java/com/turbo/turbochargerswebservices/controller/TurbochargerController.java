@@ -2,6 +2,7 @@ package com.turbo.turbochargerswebservices.controller;
 
 import com.turbo.turbochargerswebservices.model.Turbocharger;
 import com.turbo.turbochargerswebservices.service.TurbochargerService;
+import com.turbo.turbochargerswebservices.service.TurbochargerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,36 +18,36 @@ public class TurbochargerController {
     private final TurbochargerService turbochargerService;
 
     @Autowired
-    public TurbochargerController(TurbochargerService turbochargerService) {
+    public TurbochargerController(TurbochargerServiceImpl turbochargerService) {
         this.turbochargerService = turbochargerService;
     }
 
     @GetMapping("/turbos")
     public List<Turbocharger> listAllTurbos() {
-      return turbochargerService.getAllTurbos();
+      return turbochargerService.findAll();
     }
 
     @GetMapping("/turbos/{id}")
     public ResponseEntity<Turbocharger> getTurboById(@PathVariable Long id) {
-        Turbocharger turbo = turbochargerService.findTurboById(id);
+        Turbocharger turbo = turbochargerService.findById(id);
         return new ResponseEntity<>(turbo, HttpStatus.OK);
     }
 
     @PutMapping("/turbos/{id}")
     public ResponseEntity<Turbocharger> updateTurboById(@PathVariable Long id, @RequestBody Turbocharger turbocharger) {
-        Turbocharger updatedTurbo = turbochargerService.addTurbo(turbocharger);
+        Turbocharger updatedTurbo = turbochargerService.update(turbocharger);
         return new ResponseEntity<>(updatedTurbo, HttpStatus.OK);
     }
 
     @PostMapping("/turbos")
     public ResponseEntity<Turbocharger> createTurbo(@RequestBody Turbocharger turbocharger) {
-        Turbocharger createdTurbo = turbochargerService.addTurbo(turbocharger);
+        Turbocharger createdTurbo = turbochargerService.save(turbocharger);
         return new ResponseEntity<>(createdTurbo, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/turbos/{id}")
     public ResponseEntity<Turbocharger> deleteTurbo(@PathVariable Long id) {
-        turbochargerService.deleteTurbo(id);
+        turbochargerService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 }

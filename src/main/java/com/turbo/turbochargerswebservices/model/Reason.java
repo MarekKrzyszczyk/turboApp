@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="reason")
-public class Reason {
+public class Reason extends AbstractBaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

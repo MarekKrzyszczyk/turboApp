@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "work_order")
-public class Order {
+public class Order extends AbstractBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
