@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.repository;
 
-import com.turbo.turbochargerswebservices.model.Status;
+import com.turbo.turbochargerswebservices.model.entity.Status;
 import org.springframework.stereotype.Repository;
 
 @Repository

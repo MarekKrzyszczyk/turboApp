@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.controller;
 
-import com.turbo.turbochargerswebservices.model.Part;
+import com.turbo.turbochargerswebservices.model.entity.Part;
 import com.turbo.turbochargerswebservices.service.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

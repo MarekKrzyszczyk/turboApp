@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.Reason;
+import com.turbo.turbochargerswebservices.model.entity.Reason;
 import com.turbo.turbochargerswebservices.repository.ReasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
