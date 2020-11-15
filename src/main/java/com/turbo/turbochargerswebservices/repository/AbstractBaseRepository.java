@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.repository;
 
-import com.turbo.turbochargerswebservices.model.AbstractBaseEntity;
+import com.turbo.turbochargerswebservices.model.entity.AbstractBaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.turbo.turbochargerswebservices.model;
+package com.turbo.turbochargerswebservices.model.entity;
 
 import javax.persistence.*;
 
@@ -11,6 +11,14 @@ public class Part extends AbstractBaseEntity {
 
     @Column
     private String name;
+
+    public Part(String name) {
+        this.name = name;
+    }
+
+    public Part() {
+
+    }
 
     public Long getId() {
         return id;

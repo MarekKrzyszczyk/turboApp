@@ -1,4 +1,4 @@
-package com.turbo.turbochargerswebservices.model;
+package com.turbo.turbochargerswebservices.model.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -36,6 +36,15 @@ public class Order extends AbstractBaseEntity {
     private Reason reason;
 
     public Order() {
+    }
+
+    public Order(Long id, LocalDate orderDate, Status status, Turbocharger turbocharger, List<Part> parts, Reason reason) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.status = status;
+        this.turbocharger = turbocharger;
+        this.parts = parts;
+        this.reason = reason;
     }
 
     public Long getId() {

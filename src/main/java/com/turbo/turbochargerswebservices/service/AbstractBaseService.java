@@ -1,10 +1,9 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.AbstractBaseEntity;
+import com.turbo.turbochargerswebservices.model.entity.AbstractBaseEntity;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 public interface AbstractBaseService<T extends AbstractBaseEntity, ID extends Serializable> {
 

@@ -1,4 +1,4 @@
-package com.turbo.turbochargerswebservices.model;
+package com.turbo.turbochargerswebservices.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,6 +25,10 @@ public class Turbocharger extends AbstractBaseEntity{
     private List<Order> orders;
 
     public Turbocharger() {
+    }
+
+    public Turbocharger(String model) {
+        this.model = model;
     }
 
     public Long getId() {

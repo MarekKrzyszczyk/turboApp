@@ -1,4 +1,4 @@
-package com.turbo.turbochargerswebservices.model;
+package com.turbo.turbochargerswebservices.model.entity;
 
 import java.io.Serializable;
 

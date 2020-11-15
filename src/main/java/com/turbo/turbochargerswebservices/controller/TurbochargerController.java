@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.controller;
 
-import com.turbo.turbochargerswebservices.model.Turbocharger;
+import com.turbo.turbochargerswebservices.model.entity.Turbocharger;
 import com.turbo.turbochargerswebservices.service.TurbochargerService;
 import com.turbo.turbochargerswebservices.service.TurbochargerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

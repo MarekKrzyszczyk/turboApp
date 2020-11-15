@@ -1,4 +1,4 @@
-package com.turbo.turbochargerswebservices.model;
+package com.turbo.turbochargerswebservices.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -6,9 +6,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "status")
-public class Status extends AbstractBaseEntity {
-
+@Table(name="reason")
+public class Reason extends AbstractBaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,14 +15,15 @@ public class Status extends AbstractBaseEntity {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "status")
+    @OneToMany(mappedBy = "reason")
     private List<Order> orders;
 
-    public Status(String name) {
+    public Reason(String name) {
         this.name = name;
     }
 
-    public Status() {
+    public Reason() {
+
     }
 
     public Long getId() {
