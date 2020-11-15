@@ -1,14 +1,11 @@
 package com.turbo.turbochargerswebservices.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "turbocharger")
 public class Turbocharger {
     @Id
@@ -27,12 +24,47 @@ public class Turbocharger {
     @OneToMany(mappedBy = "turbocharger")
     private List<Order> orders;
 
-    public Turbocharger(String number, String model, String producer) {
+    public Turbocharger() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
         this.producer = producer;
     }
 
-    public Turbocharger() {
+    @JsonIgnore
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

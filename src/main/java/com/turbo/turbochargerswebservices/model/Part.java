@@ -1,13 +1,7 @@
 package com.turbo.turbochargerswebservices.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 
-
-@Getter
-@Setter
 @Entity
 @Table(name = "part")
 public class Part {
@@ -18,8 +12,19 @@ public class Part {
     @Column
     private String name;
 
-    @Override
-    public String toString() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
