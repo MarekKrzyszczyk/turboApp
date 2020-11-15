@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "turbocharger")
-public class Turbocharger {
+public class Turbocharger extends AbstractBaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
