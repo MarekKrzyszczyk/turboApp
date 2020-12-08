@@ -1,6 +1,7 @@
 package com.turbo.turbochargerswebservices.model.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -25,7 +26,34 @@ public class User extends AbstractBaseEntity {
     @Column
     private boolean active;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_workgroup",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "workgroup_id")
+    )
+    private List<Workgroup> workgroups;
+
+    @OneToMany(mappedBy = "seller")
+    private List<Order> ordersBySeller;
+
+    @OneToMany(mappedBy = "technician")
+    private List<Order> ordersByTechnician;
+
     public User() {
+    }
+
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Long getId() {

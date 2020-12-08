@@ -13,5 +13,7 @@ public interface OrderMapper {
     @Mapping(source = "turbocharger.model", target = "turbocharger")
     @Mapping(source = "parts", target = "parts")
     @Mapping(source = "reason.name", target = "reason")
+    @Mapping(source = "seller.lastName", target = "seller")
+    @Mapping(source = "technician.lastName", target = "technician")
     OrderDto orderToOrderDto(Order order);
 }

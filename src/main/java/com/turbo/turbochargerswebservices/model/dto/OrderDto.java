@@ -1,5 +1,7 @@
 package com.turbo.turbochargerswebservices.model.dto;
 
+import com.turbo.turbochargerswebservices.model.entity.User;
+
 import java.util.List;
 
 public class OrderDto {
@@ -15,6 +17,10 @@ public class OrderDto {
     private List<String> parts;
 
     private String reason;
+
+    private String seller;
+
+    private String technician;;
 
     public Long getId() {
         return id;
@@ -62,5 +68,21 @@ public class OrderDto {
 
     public void setParts(List<String> parts) {
         this.parts = parts;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
+
+    public String getTechnician() {
+        return technician;
+    }
+
+    public void setTechnician(String technician) {
+        this.technician = technician;
     }
 }
