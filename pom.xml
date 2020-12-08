@@ -8,14 +8,15 @@
         <version>2.3.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.mkrzyszczyk.rest.webservices</groupId>
-    <artifactId>restful-web-services</artifactId>
+    <groupId>com.turbousers.turbo.turbochargerswebservices</groupId>
+    <artifactId>turboApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>restful-web-services</name>
-    <description>todos-application</description>
+    <name>turboApp</name>
+    <description>management of turbochargers</description>
 
     <properties>
         <java.version>11</java.version>
+        <jar.finalName>${project.name}</jar.finalName>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
     </properties>
 
@@ -86,8 +87,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.11</source> <!-- depending on your project -->
-                    <target>1.11</target> <!-- depending on your project -->
+                    <source>11</source>
+                    <target>11</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>

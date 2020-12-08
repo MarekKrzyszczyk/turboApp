@@ -23,7 +23,7 @@ public class Order extends AbstractBaseEntity {
     @JoinColumn(name = "charger_id")
     private Turbocharger turbocharger;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "part_order",
             joinColumns = @JoinColumn(name = "order_id"),
@@ -35,16 +35,26 @@ public class Order extends AbstractBaseEntity {
     @JoinColumn(name = "reason_id")
     private Reason reason;
 
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private User seller;
+
+    @ManyToOne
+    @JoinColumn(name = "technician_id")
+    private User technician;
+
     public Order() {
     }
 
-    public Order(Long id, LocalDate orderDate, Status status, Turbocharger turbocharger, List<Part> parts, Reason reason) {
+    public Order(Long id, LocalDate orderDate, Status status, Turbocharger turbocharger, List<Part> parts, Reason reason, User seller, User technician) {
         this.id = id;
         this.orderDate = orderDate;
         this.status = status;
         this.turbocharger = turbocharger;
         this.parts = parts;
         this.reason = reason;
+        this.seller = seller;
+        this.technician = technician;
     }
 
     public Long getId() {
@@ -93,5 +103,21 @@ public class Order extends AbstractBaseEntity {
 
     public void setReason(Reason reason) {
         this.reason = reason;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
+    }
+
+    public User getTechnician() {
+        return technician;
+    }
+
+    public void setTechnician(User technician) {
+        this.technician = technician;
     }
 }
