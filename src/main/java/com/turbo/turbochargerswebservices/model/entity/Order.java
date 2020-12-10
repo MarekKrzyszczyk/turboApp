@@ -19,7 +19,7 @@ public class Order extends AbstractBaseEntity {
     private String notes;
 
     @Column
-    private boolean cancelled;
+    private boolean deleted;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
@@ -135,11 +135,11 @@ public class Order extends AbstractBaseEntity {
         this.notes = notes;
     }
 
-    public boolean isCancelled() {
-        return cancelled;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

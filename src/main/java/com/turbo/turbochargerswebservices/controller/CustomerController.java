@@ -1,9 +1,8 @@
 package com.turbo.turbochargerswebservices.controller;
 
+import com.turbo.turbochargerswebservices.model.dto.CustomerDto;
 import com.turbo.turbochargerswebservices.model.entity.Customer;
-import com.turbo.turbochargerswebservices.model.entity.Status;
 import com.turbo.turbochargerswebservices.service.CustomerService;
-import com.turbo.turbochargerswebservices.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,8 @@ public class CustomerController {
     }
 
     @GetMapping("/customers")
-    public List<Customer> listAllCustomers() {
-      return customerService.findAll();
+    public List<CustomerDto> listAllCustomers() {
+      return customerService.listAllActive();
     }
 
 

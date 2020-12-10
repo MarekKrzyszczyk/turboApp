@@ -18,6 +18,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, Long> impleme
     @Autowired
     public UserServiceImpl(UserRepository userRepository, CustomMapper customMapper) {
         super(userRepository);
+        this.userRepository = userRepository;
         this.customMapper = customMapper;
     }
 
