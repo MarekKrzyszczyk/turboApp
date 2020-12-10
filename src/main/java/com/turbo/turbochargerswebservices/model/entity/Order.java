@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "work_order")
+@Table(name = "orders")
 public class Order extends AbstractBaseEntity {
 
     @Id
@@ -14,6 +14,12 @@ public class Order extends AbstractBaseEntity {
 
     @Column(name = "order_date")
     private LocalDate orderDate;
+
+    @Column
+    private String notes;
+
+    @Column
+    private boolean cancelled;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
@@ -25,7 +31,7 @@ public class Order extends AbstractBaseEntity {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "part_order",
+            name = "parts_orders",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "part_id")
     )
@@ -119,5 +125,21 @@ public class Order extends AbstractBaseEntity {
 
     public void setTechnician(User technician) {
         this.technician = technician;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 }

@@ -1,28 +1,23 @@
 package com.turbo.turbochargerswebservices.model.dto;
 
-import com.turbo.turbochargerswebservices.model.entity.Part;
-import org.springframework.stereotype.Component;
+import com.turbo.turbochargerswebservices.model.entity.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Component
-public class CustomMapper {
-    private final String THE_FORMAT = "YYYY-MM-dd";
-    private final DateTimeFormatter DATETIMEFORMMATER = DateTimeFormatter.ofPattern(THE_FORMAT);
+@Mapper(uses = {Utils.class}, componentModel = "spring")
+public interface CustomMapper {
 
-    public LocalDateTime asLocalDate(String string) {
-        return LocalDateTime.parse(string, DATETIMEFORMMATER);
-    }
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "firstName", target = "firstName")
+    @Mapping(source = "lastName", target = "lastName")
+    List<UserDto> mapUsers(List<User> users);
 
-    public String asString(LocalDate localDate) {
-        return localDate.format(DATETIMEFORMMATER);
-    }
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "firstName", target = "firstName")
+    @Mapping(source = "lastName", target = "lastName")
+    @Mapping(source = "phone", target = "phone")
+    List<CustomerDto> mapCustomers(List<Customer> customers);
 
-    public List<String> partToPartName(List<Part> parts) {
-        return parts.stream().map(Part::getName).collect(Collectors.toList());
-    }
 }

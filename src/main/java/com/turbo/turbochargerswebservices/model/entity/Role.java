@@ -3,7 +3,7 @@ package com.turbo.turbochargerswebservices.model.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name= "role")
+@Table(name= "roles")
 public class Role extends AbstractBaseEntity {
 
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)

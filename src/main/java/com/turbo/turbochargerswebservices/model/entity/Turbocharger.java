@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "turbocharger")
+@Table(name = "turbochargers")
 public class Turbocharger extends AbstractBaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
