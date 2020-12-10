@@ -23,6 +23,6 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, Long> impleme
 
     @Override
     public List<UserDto> listAllActiveUsers() {
-      return customMapper.mapUsers(userRepository.findByActiveTrue());
+      return customMapper.mapUsers(userRepository.findByDeletedFalse());
     }
 }
