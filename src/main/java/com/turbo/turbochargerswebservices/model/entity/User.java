@@ -98,4 +98,20 @@ public class User extends AbstractBaseEntity {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Workgroup> getWorkgroups() {
+        return workgroups;
+    }
+
+    public void setWorkgroups(List<Workgroup> workgroups) {
+        this.workgroups = workgroups;
+    }
 }
