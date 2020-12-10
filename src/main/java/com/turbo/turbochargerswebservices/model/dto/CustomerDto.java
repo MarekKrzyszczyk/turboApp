@@ -1,30 +1,18 @@
-package com.turbo.turbochargerswebservices.model.entity;
+package com.turbo.turbochargerswebservices.model.dto;
 
-import javax.persistence.*;
+import com.turbo.turbochargerswebservices.model.entity.AbstractBaseEntity;
 
-@Entity
-@Table(name = "customers")
-public class Customer extends AbstractBaseEntity{
+public class CustomerDto extends AbstractBaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String firstName;
 
-    @Column
     private String lastName;
 
-    @Column
     private String phone;
 
-    @Column
     private boolean active;
-
-    public Customer() {
-
-    }
 
     public Long getId() {
         return id;
@@ -58,11 +46,4 @@ public class Customer extends AbstractBaseEntity{
         this.phone = phone;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }

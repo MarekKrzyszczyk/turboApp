@@ -3,7 +3,7 @@ package com.turbo.turbochargerswebservices.model.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="workgroup")
+@Table(name="workgroups")
 public class Workgroup  extends AbstractBaseEntity{
 
     @Id
