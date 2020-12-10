@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface UserRepository extends AbstractBaseRepository<User, Long> {
 
-    List<User> findByActiveTrue();
+    List<User> findByDeletedFalse();
 }

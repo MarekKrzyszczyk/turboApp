@@ -42,12 +42,4 @@ public class Status extends AbstractBaseEntity {
         this.name = name;
     }
 
-    @JsonIgnore
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 }
