@@ -9,4 +9,6 @@ public interface CustomerService extends AbstractBaseService<Customer, Long> {
 
     List<CustomerDto> listAllActive();
 
+    void setDeletedAsTrue(Long id);
+
 }

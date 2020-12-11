@@ -12,6 +12,8 @@ public interface CustomMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "firstName", target = "firstName")
     @Mapping(source = "lastName", target = "lastName")
+    @Mapping(source = "roles", target = "roles")
+    @Mapping(source = "workgroups", target = "workgroups")
     List<UserDto> mapUsers(List<User> users);
 
     @Mapping(source = "id", target = "id")

@@ -61,4 +61,5 @@ public abstract class AbstractBaseServiceImpl<T extends AbstractBaseEntity, ID e
     public void deleteById(ID entityId) {
         abstractBaseRepository.deleteById(entityId);
     }
+
 }
