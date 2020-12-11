@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl extends AbstractBaseServiceImpl<Customer, Long> implements CustomerService{
@@ -26,5 +27,15 @@ public class CustomerServiceImpl extends AbstractBaseServiceImpl<Customer, Long>
     @Override
     public List<CustomerDto> listAllActive() {
         return customMapper.mapCustomers(customerRepository.findByDeletedFalse());
+    }
+
+    @Override
+    public void setDeletedAsTrue(Long id) {
+        Optional<Customer> optCustomer = customerRepository.findById(id);
+        if(optCustomer.isPresent()) {
+           Customer deletedCustomer = optCustomer.get();
+           deletedCustomer.setDeleted(true);
+           customerRepository.save(deletedCustomer);
+        }
     }
 }

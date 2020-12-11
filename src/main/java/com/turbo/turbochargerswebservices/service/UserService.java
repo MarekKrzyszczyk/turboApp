@@ -8,4 +8,6 @@ import java.util.List;
 public interface UserService extends AbstractBaseService<User, Long> {
 
     List<UserDto> listAllActiveUsers();
+
+    void setDeletedAsTrue(Long id);
 }

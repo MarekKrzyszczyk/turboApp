@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl extends AbstractBaseServiceImpl<User, Long> implements UserService{
@@ -25,5 +26,15 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, Long> impleme
     @Override
     public List<UserDto> listAllActiveUsers() {
       return customMapper.mapUsers(userRepository.findByDeletedFalse());
+    }
+
+    @Override
+    public void setDeletedAsTrue(Long id) {
+        Optional<User> optUser = userRepository.findById(id);
+        if(optUser.isPresent()) {
+            User deletedUser = optUser.get();
+            deletedUser.setDeleted(true);
+            userRepository.save(deletedUser);
+        }
     }
 }

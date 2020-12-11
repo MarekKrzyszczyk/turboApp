@@ -33,6 +33,12 @@ public class CustomerController {
         Customer createdCustomer = customerService.save(customer);
         return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/customers/{id}")
+    public ResponseEntity<Customer> deleteCustomer(@PathVariable Long id) {
+        customerService.setDeletedAsTrue(id);
+        return ResponseEntity.ok().build();
+    }
 }
 
 
