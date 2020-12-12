@@ -29,11 +29,12 @@ public class OrderServiceImpl extends AbstractBaseServiceImpl<Order, Long> imple
     @Override
     public void setDeletedAsTrue(Long id) {
         Optional<Order> optOrder = orderRepository.findById(id);
-        if(optOrder.isPresent()) {
+        if (optOrder.isPresent()) {
             Order deletedOrder = optOrder.get();
             deletedOrder.setDeleted(true);
             orderRepository.save(deletedOrder);
         }
+    }
 
     @Override
     public Order create(Order order) {
