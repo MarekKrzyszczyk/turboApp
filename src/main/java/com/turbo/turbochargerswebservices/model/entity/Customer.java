@@ -20,7 +20,7 @@ public class Customer extends AbstractBaseEntity{
     private String phone;
 
     @Column
-    private boolean active;
+    private boolean deleted;
 
     public Customer() {
 
@@ -58,11 +58,11 @@ public class Customer extends AbstractBaseEntity{
         this.phone = phone;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

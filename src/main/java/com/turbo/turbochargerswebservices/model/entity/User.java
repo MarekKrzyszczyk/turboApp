@@ -24,7 +24,7 @@ public class User extends AbstractBaseEntity {
     private String password;
 
     @Column
-    private boolean active;
+    private boolean deleted;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -49,11 +49,6 @@ public class User extends AbstractBaseEntity {
     private List<Order> ordersByTechnician;
 
     public User() {
-    }
-
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public Long getId() {
@@ -96,11 +91,27 @@ public class User extends AbstractBaseEntity {
         this.password = password;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Workgroup> getWorkgroups() {
+        return workgroups;
+    }
+
+    public void setWorkgroups(List<Workgroup> workgroups) {
+        this.workgroups = workgroups;
     }
 }

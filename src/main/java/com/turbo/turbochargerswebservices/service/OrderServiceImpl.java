@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -24,6 +25,15 @@ public class OrderServiceImpl extends AbstractBaseServiceImpl<Order, Long> imple
         this.sequencePatternService = sequencePatternService;
         this.orderRepository = orderRepository;
     }
+
+    @Override
+    public void setDeletedAsTrue(Long id) {
+        Optional<Order> optOrder = orderRepository.findById(id);
+        if(optOrder.isPresent()) {
+            Order deletedOrder = optOrder.get();
+            deletedOrder.setDeleted(true);
+            orderRepository.save(deletedOrder);
+        }
 
     @Override
     public Order create(Order order) {
