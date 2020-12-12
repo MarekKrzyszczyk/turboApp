@@ -19,12 +19,10 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final CustomMapper customMapper;
 
     @Autowired
     public UserController(UserService userService, CustomMapper customMapper) {
         this.userService = userService;
-        this.customMapper = customMapper;
     }
 
     @GetMapping("/users")

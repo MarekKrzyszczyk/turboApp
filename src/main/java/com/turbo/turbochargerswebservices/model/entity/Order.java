@@ -21,6 +21,9 @@ public class Order extends AbstractBaseEntity {
     @Column
     private boolean cancelled;
 
+    @Column
+    private String orderNumber;
+
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
@@ -50,17 +53,6 @@ public class Order extends AbstractBaseEntity {
     private User technician;
 
     public Order() {
-    }
-
-    public Order(Long id, LocalDate orderDate, Status status, Turbocharger turbocharger, List<Part> parts, Reason reason, User seller, User technician) {
-        this.id = id;
-        this.orderDate = orderDate;
-        this.status = status;
-        this.turbocharger = turbocharger;
-        this.parts = parts;
-        this.reason = reason;
-        this.seller = seller;
-        this.technician = technician;
     }
 
     public Long getId() {
@@ -141,5 +133,13 @@ public class Order extends AbstractBaseEntity {
 
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 }
