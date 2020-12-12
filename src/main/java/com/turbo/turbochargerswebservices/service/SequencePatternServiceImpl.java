@@ -51,7 +51,7 @@ public class SequencePatternServiceImpl extends AbstractBaseServiceImpl<Sequence
         String month = sequencePattern.getMonth().toString();
         String currentNumber = sequencePattern.getCurrentNumber().toString();
         return pattern.replace("|YYYY|", year)
-                .replace("|MM", month)
+                .replace("|MM|", month)
                 .replace("|ID|", currentNumber);
     }
 }
