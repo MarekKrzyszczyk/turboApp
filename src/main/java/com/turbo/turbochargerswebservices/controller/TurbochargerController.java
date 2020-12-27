@@ -24,7 +24,7 @@ public class TurbochargerController {
 
     @GetMapping("/turbos")
     public List<Turbocharger> listAllTurbos() {
-      return turbochargerService.findAll();
+        return turbochargerService.findAll();
     }
 
     @GetMapping("/turbos/{id}")
@@ -41,8 +41,7 @@ public class TurbochargerController {
 
     @PostMapping("/turbos")
     public ResponseEntity<Turbocharger> createTurbo(@RequestBody Turbocharger turbocharger) {
-        Turbocharger createdTurbo = turbochargerService.save(turbocharger);
-        return new ResponseEntity<>(createdTurbo, HttpStatus.CREATED);
+        return turbochargerService.create(turbocharger);
     }
 
     @DeleteMapping("/turbos/{id}")
