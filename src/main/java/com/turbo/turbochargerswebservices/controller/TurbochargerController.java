@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TurbochargerController {
 
     private final TurbochargerService turbochargerService;
@@ -50,5 +49,3 @@ public class TurbochargerController {
         return ResponseEntity.ok().build();
     }
 }
-
-
