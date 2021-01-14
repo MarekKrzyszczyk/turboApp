@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl extends AbstractBaseServiceImpl<User, Long> implements UserService{
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     private final CustomMapper customMapper;
 
     @Autowired

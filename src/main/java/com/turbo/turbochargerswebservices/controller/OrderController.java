@@ -1,5 +1,6 @@
 package com.turbo.turbochargerswebservices.controller;
 
+import com.turbo.turbochargerswebservices.model.dto.OrderDto;
 import com.turbo.turbochargerswebservices.model.entity.Order;
 import com.turbo.turbochargerswebservices.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public List<Order> listAllOrders() {
-        return orderService.findAll();
+    public List<OrderDto> listAllOrders() {
+        return orderService.listAllOrders();
     }
 
     @GetMapping("/orders/{id}")

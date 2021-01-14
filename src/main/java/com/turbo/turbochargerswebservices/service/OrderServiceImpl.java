@@ -1,5 +1,8 @@
 package com.turbo.turbochargerswebservices.service;
 
+import com.turbo.turbochargerswebservices.model.dto.CustomMapper;
+import com.turbo.turbochargerswebservices.model.dto.OrderDto;
+import com.turbo.turbochargerswebservices.model.dto.UserDto;
 import com.turbo.turbochargerswebservices.model.entity.Order;
 import com.turbo.turbochargerswebservices.model.entity.SequencePattern;
 import com.turbo.turbochargerswebservices.repository.OrderRepository;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,14 +20,21 @@ public class OrderServiceImpl extends AbstractBaseServiceImpl<Order, Long> imple
 
     private final OrderRepository orderRepository;
     private final SequencePatternService sequencePatternService;
+    private final CustomMapper customMapper;
     private static final String ENTITY = "order";
     private static final String PREFIX = "ZAM";
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, SequencePatternService sequencePatternService) {
+    public OrderServiceImpl(OrderRepository orderRepository, SequencePatternService sequencePatternService, CustomMapper customMapper) {
         super(orderRepository);
         this.sequencePatternService = sequencePatternService;
         this.orderRepository = orderRepository;
+        this.customMapper = customMapper;
+    }
+
+    @Override
+    public List<OrderDto> listAllOrders() {
+        return customMapper.mapOrders(orderRepository.findAll());
     }
 
     @Override
