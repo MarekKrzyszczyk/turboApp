@@ -1,0 +1,2 @@
+2021-04-28 19:10:35.968  INFO 1280 --- [http-nio-8080-exec-1] c.t.t.controller.PartController          : info log
+2021-04-28 19:10:35.968 DEBUG 1280 --- [http-nio-8080-exec-1] c.t.t.controller.PartController          : debug log
