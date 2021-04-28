@@ -6,3 +6,4 @@ HELP.md
 mvnw.cmd
 mvnw
 initData.sql
+logs/*
