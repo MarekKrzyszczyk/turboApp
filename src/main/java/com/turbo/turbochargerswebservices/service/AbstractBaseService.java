@@ -1,23 +1,21 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.entity.AbstractBaseEntity;
+import com.turbo.turbochargerswebservices.model.dto.AbstractBaseDto;
 
 import java.io.Serializable;
 import java.util.List;
 
-public interface AbstractBaseService<T extends AbstractBaseEntity, ID extends Serializable> {
+public interface AbstractBaseService<TDTO extends AbstractBaseDto, ID extends Serializable> {
 
-    T save(T entity);
+    TDTO save(TDTO entity);
 
-    List<T> findAll();
+    List<TDTO> findAll();
 
-    T findById(ID entityId);
+    TDTO findById(ID entityId);
 
-    T update(T entity);
+    TDTO updateById(ID entityId);
 
-    T updateById(T entity, ID entityId);
-
-    void delete(T entity);
+    void delete(TDTO entity);
 
     void deleteById(ID entityId);
 

@@ -1,8 +1,7 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.dto.CustomMapper;
-import com.turbo.turbochargerswebservices.model.dto.OrderDto;
-import com.turbo.turbochargerswebservices.model.dto.UserDto;
+import com.turbo.turbochargerswebservices.model.dto.order.OrderDto;
+import com.turbo.turbochargerswebservices.model.dto.order.OrderMapper;
 import com.turbo.turbochargerswebservices.model.entity.Order;
 import com.turbo.turbochargerswebservices.model.entity.SequencePattern;
 import com.turbo.turbochargerswebservices.repository.OrderRepository;
@@ -16,25 +15,26 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class OrderServiceImpl extends AbstractBaseServiceImpl<Order, Long> implements OrderService {
+public class OrderServiceImpl extends AbstractBaseServiceImpl<Order, OrderDto, Long> implements OrderService {
 
     private final OrderRepository orderRepository;
     private final SequencePatternService sequencePatternService;
-    private final CustomMapper customMapper;
+    private final OrderMapper orderMapper;
     private static final String ENTITY = "order";
     private static final String PREFIX = "ZAM";
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, SequencePatternService sequencePatternService, CustomMapper customMapper) {
-        super(orderRepository);
+    public OrderServiceImpl(OrderRepository orderRepository, SequencePatternService sequencePatternService, OrderMapper orderMapper) {
+        super(orderRepository, orderMapper);
         this.sequencePatternService = sequencePatternService;
         this.orderRepository = orderRepository;
-        this.customMapper = customMapper;
+        this.orderMapper = orderMapper;
     }
 
     @Override
     public List<OrderDto> listAllOrders() {
-        return customMapper.mapOrders(orderRepository.findAll());
+        List<Order> orders = orderRepository.findAll();
+        return orderMapper.mapToDtoList(orders);
     }
 
     @Override
@@ -48,15 +48,15 @@ public class OrderServiceImpl extends AbstractBaseServiceImpl<Order, Long> imple
     }
 
     @Override
-    public Order create(Order order) {
+    public OrderDto create(OrderDto orderDto) {
         SequencePattern orderNumberPattern;
         orderNumberPattern = sequencePatternService.findByYearAndMonthAndEntity(LocalDate.now(), ENTITY);
         if (orderNumberPattern == null) {
             orderNumberPattern = sequencePatternService.create(ENTITY, PREFIX);
         }
         String orderNumber = sequencePatternService.getSequenceNumber(orderNumberPattern);
-        order.setOrderNumber(orderNumber);
+        orderDto.setOrderNumber(orderNumber);
         sequencePatternService.increaseCurrentNumber(orderNumberPattern);
-        return orderRepository.save(order);
+        return save(orderDto);
     }
 }

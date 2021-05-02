@@ -1,7 +1,6 @@
 package com.turbo.turbochargerswebservices.controller;
 
-import com.turbo.turbochargerswebservices.model.dto.OrderDto;
-import com.turbo.turbochargerswebservices.model.entity.Order;
+import com.turbo.turbochargerswebservices.model.dto.order.OrderDto;
 import com.turbo.turbochargerswebservices.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,26 +21,26 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public List<OrderDto> listAllOrders() {
-        return orderService.listAllOrders();
+    public ResponseEntity<List<OrderDto>> listAllOrders() {
+        List<OrderDto> orders = orderService.listAllOrders();
+        return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
     @GetMapping("/orders/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        Order order = orderService.findById(id);
+    public ResponseEntity<OrderDto> getOrderById(@PathVariable Long id) {
+        OrderDto order = orderService.findById(id);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
     @PostMapping("/orders")
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order createdOrder = orderService.create(order);
+    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto order) {
+        OrderDto createdOrder = orderService.create(order);
         return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/orders/{id}")
-    public ResponseEntity<Order> deleteOrder(@PathVariable Long id) {
+    public ResponseEntity<OrderDto> deleteOrder(@PathVariable Long id) {
         orderService.setDeletedAsTrue(id);
         return ResponseEntity.ok().build();
     }
-
 }

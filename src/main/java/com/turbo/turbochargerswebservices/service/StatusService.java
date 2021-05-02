@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.entity.Status;
+import com.turbo.turbochargerswebservices.model.dto.status.StatusDto;
 
-public interface StatusService extends AbstractBaseService<Status, Long> {
+public interface StatusService extends AbstractBaseService<StatusDto, Long> {
 }

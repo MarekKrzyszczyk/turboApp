@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.entity.Reason;
+import com.turbo.turbochargerswebservices.model.dto.reason.ReasonDto;
 
-public interface ReasonService extends AbstractBaseService<Reason, Long> {
+public interface ReasonService extends AbstractBaseService<ReasonDto, Long> {
 }

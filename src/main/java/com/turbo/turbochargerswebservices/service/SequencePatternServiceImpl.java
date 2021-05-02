@@ -8,13 +8,12 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
-public class SequencePatternServiceImpl extends AbstractBaseServiceImpl<SequencePattern, Long> implements SequencePatternService {
+public class SequencePatternServiceImpl implements SequencePatternService {
 
     private final SequencePatternRepository sequencePatternRepository;
 
     @Autowired
     public SequencePatternServiceImpl(SequencePatternRepository sequencePatternRepository) {
-        super(sequencePatternRepository);
         this.sequencePatternRepository = sequencePatternRepository;
     }
 

@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.controller;
 
-import com.turbo.turbochargerswebservices.model.entity.Turbocharger;
+import com.turbo.turbochargerswebservices.model.dto.turbocharger.TurbochargerDto;
 import com.turbo.turbochargerswebservices.service.TurbochargerService;
 import com.turbo.turbochargerswebservices.service.TurbochargerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,29 +22,31 @@ public class TurbochargerController {
     }
 
     @GetMapping("/turbos")
-    public List<Turbocharger> listAllTurbos() {
-        return turbochargerService.findAll();
+    public ResponseEntity<List<TurbochargerDto>> listAllTurbos() {
+        List<TurbochargerDto> turbochargers = turbochargerService.findAll();
+        return new ResponseEntity<>(turbochargers, HttpStatus.OK);
     }
 
     @GetMapping("/turbos/{id}")
-    public ResponseEntity<Turbocharger> getTurboById(@PathVariable Long id) {
-        Turbocharger turbo = turbochargerService.findById(id);
-        return new ResponseEntity<>(turbo, HttpStatus.OK);
-    }
-
-    @PutMapping("/turbos/{id}")
-    public ResponseEntity<Turbocharger> updateTurboById(@PathVariable Long id, @RequestBody Turbocharger turbocharger) {
-        Turbocharger updatedTurbo = turbochargerService.update(turbocharger);
-        return new ResponseEntity<>(updatedTurbo, HttpStatus.OK);
+    public ResponseEntity<TurbochargerDto> getTurboById(@PathVariable Long id) {
+        TurbochargerDto turbocharger = turbochargerService.findById(id);
+        return new ResponseEntity<>(turbocharger, HttpStatus.OK);
     }
 
     @PostMapping("/turbos")
-    public ResponseEntity<Turbocharger> createTurbo(@RequestBody Turbocharger turbocharger) {
-        return turbochargerService.create(turbocharger);
+    public ResponseEntity<TurbochargerDto> createTurbo(@RequestBody TurbochargerDto turbocharger) {
+        TurbochargerDto createdTurbocharger = turbochargerService.create(turbocharger);
+        return new ResponseEntity<>(createdTurbocharger, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/turbos/{id}")
+    public ResponseEntity<TurbochargerDto> updateTurboById(@PathVariable Long id) {
+        TurbochargerDto updatedTurbo = turbochargerService.updateById(id);
+        return new ResponseEntity<>(updatedTurbo, HttpStatus.OK);
     }
 
     @DeleteMapping("/turbos/{id}")
-    public ResponseEntity<Turbocharger> deleteTurbo(@PathVariable Long id) {
+    public ResponseEntity<TurbochargerDto> deleteTurbo(@PathVariable Long id) {
         turbochargerService.deleteById(id);
         return ResponseEntity.ok().build();
     }

@@ -1,45 +1,19 @@
 package com.turbo.turbochargerswebservices.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="reasons")
+@Data
+@NoArgsConstructor
 public class Reason extends AbstractBaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
-
-    @OneToMany(mappedBy = "reason")
-    private List<Order> orders;
-
-    public Reason(String name) {
-        this.name = name;
-    }
-
-    public Reason() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

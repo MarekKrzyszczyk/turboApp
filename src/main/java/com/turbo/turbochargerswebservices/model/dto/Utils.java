@@ -8,15 +8,15 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class Utils {
-    private final String THE_FORMAT = "YYYY-MM-dd";
-    private final DateTimeFormatter DATETIMEFORMMATER = DateTimeFormatter.ofPattern(THE_FORMAT);
+    private final String theFormat = "YYYY-MM-dd";
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(theFormat);
 
     public LocalDateTime asLocalDate(String string) {
-        return LocalDateTime.parse(string, DATETIMEFORMMATER);
+        return LocalDateTime.parse(string, dateTimeFormatter);
     }
 
     public String asString(LocalDate localDate) {
-        return localDate.format(DATETIMEFORMMATER);
+        return localDate.format(dateTimeFormatter);
     }
 
 }

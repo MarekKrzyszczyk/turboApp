@@ -1,11 +1,16 @@
 package com.turbo.turbochargerswebservices.model.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "orders")
+@Data
+@NoArgsConstructor
 public class Order extends AbstractBaseEntity {
 
     @Id
@@ -51,95 +56,4 @@ public class Order extends AbstractBaseEntity {
     @ManyToOne
     @JoinColumn(name = "technician_id")
     private User technician;
-
-    public Order() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDate getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Turbocharger getTurbocharger() {
-        return turbocharger;
-    }
-
-    public void setTurbocharger(Turbocharger turbocharger) {
-        this.turbocharger = turbocharger;
-    }
-
-    public List<Part> getParts() {
-        return parts;
-    }
-
-    public void setParts(List<Part> parts) {
-        this.parts = parts;
-    }
-
-    public Reason getReason() {
-        return reason;
-    }
-
-    public void setReason(Reason reason) {
-        this.reason = reason;
-    }
-
-    public User getSeller() {
-        return seller;
-    }
-
-    public void setSeller(User seller) {
-        this.seller = seller;
-    }
-
-    public User getTechnician() {
-        return technician;
-    }
-
-    public void setTechnician(User technician) {
-        this.technician = technician;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    public String getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber;
-    }
 }
