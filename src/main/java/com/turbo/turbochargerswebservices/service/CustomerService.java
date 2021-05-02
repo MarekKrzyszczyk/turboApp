@@ -1,14 +1,12 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.dto.CustomerDto;
-import com.turbo.turbochargerswebservices.model.entity.Customer;
+import com.turbo.turbochargerswebservices.model.dto.customer.CustomerDto;
 
 import java.util.List;
 
-public interface CustomerService extends AbstractBaseService<Customer, Long> {
+public interface CustomerService extends AbstractBaseService<CustomerDto, Long> {
 
     List<CustomerDto> listAllActive();
 
     void setDeletedAsTrue(Long id);
-
 }

@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.entity.Part;
+import com.turbo.turbochargerswebservices.model.dto.part.PartDto;
 
-public interface PartService extends AbstractBaseService<Part, Long> {
+public interface PartService extends AbstractBaseService<PartDto, Long> {
 }

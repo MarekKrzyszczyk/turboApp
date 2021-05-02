@@ -1,6 +1,9 @@
 package com.turbo.turbochargerswebservices.service;
 
+import com.turbo.turbochargerswebservices.model.dto.AbstractBaseDto;
+import com.turbo.turbochargerswebservices.model.dto.CustomMapper;
 import com.turbo.turbochargerswebservices.model.entity.AbstractBaseEntity;
+import com.turbo.turbochargerswebservices.model.entity.Customer;
 import com.turbo.turbochargerswebservices.repository.AbstractBaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,54 +15,54 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public abstract class AbstractBaseServiceImpl<T extends AbstractBaseEntity, ID extends Serializable> implements AbstractBaseService<T, ID> {
+public abstract class AbstractBaseServiceImpl<T extends AbstractBaseEntity, TDTO extends AbstractBaseDto, ID extends Serializable>
+        implements AbstractBaseService<TDTO, ID> {
 
     private final AbstractBaseRepository<T, ID> abstractBaseRepository;
+    private final CustomMapper<T, TDTO> customMapper;
 
     @Autowired
-    public AbstractBaseServiceImpl(AbstractBaseRepository<T, ID> abstractBaseRepository) {
+    public AbstractBaseServiceImpl(AbstractBaseRepository<T, ID> abstractBaseRepository, CustomMapper<T, TDTO> customMapper) {
         this.abstractBaseRepository = abstractBaseRepository;
+        this.customMapper = customMapper;
     }
 
     @Override
-    public T save(T entity) {
-        return abstractBaseRepository.save(entity);
+    public TDTO save(TDTO dto) {
+        T entity = customMapper.mapToEntity(dto);
+        return customMapper.mapToDto(abstractBaseRepository.save(entity));
     }
 
     @Override
-    public List<T> findAll() {
-        return abstractBaseRepository.findAll();
+    public List<TDTO> findAll() {
+        return customMapper.mapToDtoList(abstractBaseRepository.findAll());
     }
 
     @Override
-    public T findById(ID entityId) {
-        Optional<T> optional = abstractBaseRepository.findById(entityId);
-        return optional.orElse(null);
+    public TDTO findById(ID dtoId) {
+        Optional<T> optional = abstractBaseRepository.findById(dtoId);
+        return customMapper.mapToDto(optional.orElse(null));
     }
 
     @Override
-    public T update(T entity) {
-        return abstractBaseRepository.save(entity);
-    }
-
-    @Override
-    public T updateById(T entity, ID entityId) {
-        Optional<T> optional = abstractBaseRepository.findById(entityId);
-        if(optional.isPresent()){
-            return abstractBaseRepository.save(entity);
-        }else{
+    public TDTO updateById(ID dtoId) {
+        Optional<T> optional = abstractBaseRepository.findById(dtoId);
+        if (optional.isPresent()) {
+           T entity = optional.get();
+            return customMapper.mapToDto(abstractBaseRepository.save(entity));
+        } else {
             return null;
         }
     }
 
     @Override
-    public void delete(T entity) {
+    public void delete(TDTO dto) {
+        T entity = customMapper.mapToEntity(dto);
         abstractBaseRepository.delete(entity);
     }
 
     @Override
-    public void deleteById(ID entityId) {
-        abstractBaseRepository.deleteById(entityId);
+    public void deleteById(ID dtoId) {
+        abstractBaseRepository.deleteById(dtoId);
     }
-
 }

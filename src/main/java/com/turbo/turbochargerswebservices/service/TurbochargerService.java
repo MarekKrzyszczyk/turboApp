@@ -1,14 +1,14 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.entity.Turbocharger;
+import com.turbo.turbochargerswebservices.model.dto.turbocharger.TurbochargerDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface TurbochargerService extends AbstractBaseService<Turbocharger, Long> {
+public interface TurbochargerService extends AbstractBaseService<TurbochargerDto, Long> {
 
-    List<Turbocharger> findByNumber(String number);
+    List<TurbochargerDto> findByNumber(String number);
 
-    ResponseEntity<Turbocharger> create(Turbocharger turbo);
-
+    TurbochargerDto create(TurbochargerDto turbo);
 }
+

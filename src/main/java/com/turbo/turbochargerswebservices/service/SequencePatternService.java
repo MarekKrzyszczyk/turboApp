@@ -4,8 +4,7 @@ import com.turbo.turbochargerswebservices.model.entity.SequencePattern;
 
 import java.time.LocalDate;
 
-public interface SequencePatternService extends AbstractBaseService<SequencePattern, Long> {
-
+public interface SequencePatternService {
 
     void increaseCurrentNumber(SequencePattern sequencePattern);
 

@@ -1,7 +1,7 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.dto.CustomMapper;
-import com.turbo.turbochargerswebservices.model.dto.CustomerDto;
+import com.turbo.turbochargerswebservices.model.dto.customer.CustomerDto;
+import com.turbo.turbochargerswebservices.model.dto.customer.CustomerMapper;
 import com.turbo.turbochargerswebservices.model.entity.Customer;
 import com.turbo.turbochargerswebservices.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,22 +11,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CustomerServiceImpl extends AbstractBaseServiceImpl<Customer, Long> implements CustomerService{
+public class CustomerServiceImpl extends AbstractBaseServiceImpl<Customer, CustomerDto, Long> implements CustomerService{
 
-    private CustomerRepository customerRepository;
-
-    private final CustomMapper customMapper;
+    private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomMapper customMapper) {
-        super(customerRepository);
+    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper) {
+        super(customerRepository, customerMapper);
         this.customerRepository = customerRepository;
-        this.customMapper = customMapper;
+        this.customerMapper = customerMapper;
     }
 
     @Override
     public List<CustomerDto> listAllActive() {
-        return customMapper.mapCustomers(customerRepository.findByDeletedFalse());
+        List<Customer> customers = customerRepository.findByDeletedFalse();
+        return customerMapper.mapToDtoList(customers);
     }
 
     @Override

@@ -1,13 +1,12 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.dto.OrderDto;
-import com.turbo.turbochargerswebservices.model.entity.Order;
+import com.turbo.turbochargerswebservices.model.dto.order.OrderDto;
 
 import java.util.List;
 
-public interface OrderService extends AbstractBaseService<Order, Long> {
+public interface OrderService extends AbstractBaseService<OrderDto, Long> {
 
-    Order create(Order order);
+    OrderDto create(OrderDto order);
 
     void setDeletedAsTrue(Long id);
 

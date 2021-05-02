@@ -1,6 +1,6 @@
 package com.turbo.turbochargerswebservices.controller;
 
-import com.turbo.turbochargerswebservices.model.dto.CustomerDto;
+import com.turbo.turbochargerswebservices.model.dto.customer.CustomerDto;
 import com.turbo.turbochargerswebservices.model.entity.Customer;
 import com.turbo.turbochargerswebservices.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -23,19 +22,19 @@ public class CustomerController {
     }
 
     @GetMapping("/customers")
-    public List<CustomerDto> listAllCustomers() {
-      return customerService.listAllActive();
+    public ResponseEntity<List<CustomerDto>> listAllCustomers() {
+        List<CustomerDto> customers = customerService.listAllActive();
+        return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
-
     @PostMapping("/customers")
-    public ResponseEntity<Customer> createCustomers(@RequestBody Customer customer) {
-        Customer createdCustomer = customerService.save(customer);
+    public ResponseEntity<CustomerDto> createCustomers(@RequestBody CustomerDto customer) {
+        CustomerDto createdCustomer = customerService.save(customer);
         return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/customers/{id}")
-    public ResponseEntity<Customer> deleteCustomer(@PathVariable Long id) {
+    public ResponseEntity<CustomerDto> deleteCustomer(@PathVariable Long id) {
         customerService.setDeletedAsTrue(id);
         return ResponseEntity.ok().build();
     }

@@ -1,7 +1,7 @@
 package com.turbo.turbochargerswebservices.service;
 
-import com.turbo.turbochargerswebservices.model.dto.CustomMapper;
-import com.turbo.turbochargerswebservices.model.dto.UserDto;
+import com.turbo.turbochargerswebservices.model.dto.user.UserDto;
+import com.turbo.turbochargerswebservices.model.dto.user.UserMapper;
 import com.turbo.turbochargerswebservices.model.entity.User;
 import com.turbo.turbochargerswebservices.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,21 +11,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl extends AbstractBaseServiceImpl<User, Long> implements UserService{
+public class UserServiceImpl extends AbstractBaseServiceImpl<User, UserDto, Long> implements UserService{
 
     private final UserRepository userRepository;
-    private final CustomMapper customMapper;
+    private final UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, CustomMapper customMapper) {
-        super(userRepository);
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+        super(userRepository, userMapper);
         this.userRepository = userRepository;
-        this.customMapper = customMapper;
+        this.userMapper = userMapper;
     }
 
     @Override
     public List<UserDto> listAllActiveUsers() {
-      return customMapper.mapUsers(userRepository.findByDeletedFalse());
+        List<User> users = userRepository.findByDeletedFalse();
+        return userMapper.mapToDtoList(users);
     }
 
     @Override

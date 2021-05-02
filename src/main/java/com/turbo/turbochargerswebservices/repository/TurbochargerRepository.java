@@ -9,5 +9,4 @@ import java.util.List;
 public interface TurbochargerRepository extends AbstractBaseRepository<Turbocharger, Long> {
 
    List<Turbocharger> findByNumber(String number);
-
 }
