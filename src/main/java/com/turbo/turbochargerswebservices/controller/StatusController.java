@@ -2,6 +2,7 @@ package com.turbo.turbochargerswebservices.controller;
 
 import com.turbo.turbochargerswebservices.model.dto.status.StatusDto;
 import com.turbo.turbochargerswebservices.service.StatusService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,12 @@ public class StatusController {
     public ResponseEntity<StatusDto> createStatus(@RequestBody StatusDto status) {
         StatusDto createdStatus = statusService.save(status);
         return new ResponseEntity<>(createdStatus, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/statuses/{id}")
+    public ResponseEntity<StatusDto> updateReasonById(@PathVariable Long id) throws NotFoundException {
+        StatusDto updatedStatus = statusService.updateById(id);
+        return new ResponseEntity<>(updatedStatus, HttpStatus.OK);
     }
 }
 

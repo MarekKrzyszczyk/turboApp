@@ -3,6 +3,7 @@ package com.turbo.turbochargerswebservices.controller;
 import com.turbo.turbochargerswebservices.model.dto.turbocharger.TurbochargerDto;
 import com.turbo.turbochargerswebservices.service.TurbochargerService;
 import com.turbo.turbochargerswebservices.service.TurbochargerServiceImpl;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class TurbochargerController {
     }
 
     @PutMapping("/turbos/{id}")
-    public ResponseEntity<TurbochargerDto> updateTurboById(@PathVariable Long id) {
+    public ResponseEntity<TurbochargerDto> updateTurboById(@PathVariable Long id) throws NotFoundException {
         TurbochargerDto updatedTurbo = turbochargerService.updateById(id);
         return new ResponseEntity<>(updatedTurbo, HttpStatus.OK);
     }

@@ -3,8 +3,8 @@ package com.turbo.turbochargerswebservices.service;
 import com.turbo.turbochargerswebservices.model.dto.AbstractBaseDto;
 import com.turbo.turbochargerswebservices.model.dto.CustomMapper;
 import com.turbo.turbochargerswebservices.model.entity.AbstractBaseEntity;
-import com.turbo.turbochargerswebservices.model.entity.Customer;
 import com.turbo.turbochargerswebservices.repository.AbstractBaseRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,13 +45,13 @@ public abstract class AbstractBaseServiceImpl<T extends AbstractBaseEntity, TDTO
     }
 
     @Override
-    public TDTO updateById(ID dtoId) {
+    public TDTO updateById(ID dtoId) throws NotFoundException {
         Optional<T> optional = abstractBaseRepository.findById(dtoId);
         if (optional.isPresent()) {
            T entity = optional.get();
             return customMapper.mapToDto(abstractBaseRepository.save(entity));
         } else {
-            return null;
+            throw(new NotFoundException("nie znaleziono obiektu o ID: " + dtoId));
         }
     }
 
