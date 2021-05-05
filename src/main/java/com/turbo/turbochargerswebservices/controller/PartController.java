@@ -2,6 +2,7 @@ package com.turbo.turbochargerswebservices.controller;
 
 import com.turbo.turbochargerswebservices.model.dto.part.PartDto;
 import com.turbo.turbochargerswebservices.service.PartService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +40,8 @@ public class PartController {
     }
 
     @PutMapping("/parts/{id}")
-    public ResponseEntity<PartDto> updatePartById(@RequestBody PartDto part) {
-        PartDto updatedPart = partService.save(part);
+    public ResponseEntity<PartDto> updatePartById(@PathVariable Long id) throws NotFoundException {
+        PartDto updatedPart = partService.updateById(id);
         return new ResponseEntity<>(updatedPart, HttpStatus.OK);
     }
 

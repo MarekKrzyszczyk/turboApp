@@ -2,6 +2,7 @@ package com.turbo.turbochargerswebservices.controller;
 
 import com.turbo.turbochargerswebservices.model.dto.reason.ReasonDto;
 import com.turbo.turbochargerswebservices.service.ReasonService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +40,8 @@ public class ReasonController {
     }
 
     @PutMapping("/reasons/{id}")
-    public ResponseEntity<ReasonDto> updateReasonById(@RequestBody ReasonDto reason) {
-        ReasonDto updatedReason = reasonService.save(reason);
+    public ResponseEntity<ReasonDto> updateReasonById(@PathVariable Long id) throws NotFoundException {
+        ReasonDto updatedReason = reasonService.updateById(id);
         return new ResponseEntity<>(updatedReason, HttpStatus.OK);
     }
 

@@ -2,6 +2,7 @@ package com.turbo.turbochargerswebservices.controller;
 
 import com.turbo.turbochargerswebservices.model.dto.order.OrderDto;
 import com.turbo.turbochargerswebservices.service.OrderService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,12 @@ public class OrderController {
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto order) {
         OrderDto createdOrder = orderService.create(order);
         return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/orders/{id}")
+    public ResponseEntity<OrderDto> updateOrder(@PathVariable Long id) throws NotFoundException {
+        OrderDto updatedOrder = orderService.updateById(id);
+        return new ResponseEntity<>(updatedOrder, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/orders/{id}")
