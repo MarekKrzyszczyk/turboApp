@@ -34,8 +34,8 @@ public class StatusController {
     }
 
     @PutMapping("/statuses/{id}")
-    public ResponseEntity<StatusDto> updateReasonById(@PathVariable Long id) throws NotFoundException {
-        StatusDto updatedStatus = statusService.updateById(id);
+    public ResponseEntity<StatusDto> updateStatus(@RequestBody StatusDto status) throws NotFoundException {
+        StatusDto updatedStatus = statusService.save(status);
         return new ResponseEntity<>(updatedStatus, HttpStatus.OK);
     }
 }

@@ -40,8 +40,8 @@ public class PartController {
     }
 
     @PutMapping("/parts/{id}")
-    public ResponseEntity<PartDto> updatePartById(@PathVariable Long id) throws NotFoundException {
-        PartDto updatedPart = partService.updateById(id);
+    public ResponseEntity<PartDto> updatePart(@RequestBody PartDto part) {
+        PartDto updatedPart = partService.save(part);
         return new ResponseEntity<>(updatedPart, HttpStatus.OK);
     }
 

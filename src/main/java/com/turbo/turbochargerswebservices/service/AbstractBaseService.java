@@ -14,8 +14,6 @@ public interface AbstractBaseService<TDTO extends AbstractBaseDto, ID extends Se
 
     TDTO findById(ID entityId);
 
-    TDTO updateById(ID entityId) throws NotFoundException;
-
     void delete(TDTO entity);
 
     void deleteById(ID entityId);

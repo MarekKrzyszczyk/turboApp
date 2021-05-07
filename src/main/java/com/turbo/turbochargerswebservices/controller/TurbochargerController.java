@@ -41,8 +41,8 @@ public class TurbochargerController {
     }
 
     @PutMapping("/turbos/{id}")
-    public ResponseEntity<TurbochargerDto> updateTurboById(@PathVariable Long id) throws NotFoundException {
-        TurbochargerDto updatedTurbo = turbochargerService.updateById(id);
+    public ResponseEntity<TurbochargerDto> updateTurbo(@RequestBody TurbochargerDto turbocharger) throws NotFoundException {
+        TurbochargerDto updatedTurbo = turbochargerService.save(turbocharger);
         return new ResponseEntity<>(updatedTurbo, HttpStatus.OK);
     }
 

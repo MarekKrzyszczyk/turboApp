@@ -40,8 +40,8 @@ public class ReasonController {
     }
 
     @PutMapping("/reasons/{id}")
-    public ResponseEntity<ReasonDto> updateReasonById(@PathVariable Long id) throws NotFoundException {
-        ReasonDto updatedReason = reasonService.updateById(id);
+    public ResponseEntity<ReasonDto> updateReason(@RequestBody ReasonDto reason) {
+        ReasonDto updatedReason = reasonService.save(reason);
         return new ResponseEntity<>(updatedReason, HttpStatus.OK);
     }
 

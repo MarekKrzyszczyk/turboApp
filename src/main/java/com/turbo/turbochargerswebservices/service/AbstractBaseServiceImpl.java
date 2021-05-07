@@ -45,17 +45,6 @@ public abstract class AbstractBaseServiceImpl<T extends AbstractBaseEntity, TDTO
     }
 
     @Override
-    public TDTO updateById(ID dtoId) throws NotFoundException {
-        Optional<T> optional = abstractBaseRepository.findById(dtoId);
-        if (optional.isPresent()) {
-           T entity = optional.get();
-            return customMapper.mapToDto(abstractBaseRepository.save(entity));
-        } else {
-            throw(new NotFoundException("nie znaleziono obiektu o ID: " + dtoId));
-        }
-    }
-
-    @Override
     public void delete(TDTO dto) {
         T entity = customMapper.mapToEntity(dto);
         abstractBaseRepository.delete(entity);

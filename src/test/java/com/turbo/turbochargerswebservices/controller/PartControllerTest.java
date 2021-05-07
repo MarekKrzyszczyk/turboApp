@@ -82,15 +82,14 @@ class PartControllerTest extends IntegrationTestsBase {
     void whenPutPart_thenStatus200() throws Exception {
 
         PartDto partDto = new PartDto();
+        partDto.setId(44L);
         partDto.setName(partName);
-        String partAsJsonString = mapper.writeValueAsString(partDto);
 
-        when(partService.save(any(PartDto.class))).thenReturn(partDto);
+        when(partService.updateById(partDto.getId())).thenReturn(partDto);
 
         mockMvc.perform(MockMvcRequestBuilders.put(entitiesUrl + entityIdUrl)
                 .with(httpBasic(authenticatedUser.getUsername(), authenticatedUser.getPassword()))
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(partAsJsonString))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentType("application/json"))
