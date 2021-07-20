@@ -51,5 +51,3 @@ public class PartController {
         return ResponseEntity.ok().build();
     }
 }
-
-

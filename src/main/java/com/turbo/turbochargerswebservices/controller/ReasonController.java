@@ -51,5 +51,3 @@ public class ReasonController {
         return ResponseEntity.ok().build();
     }
 }
-
-

@@ -56,4 +56,12 @@ public class Order extends AbstractBaseEntity {
     @ManyToOne
     @JoinColumn(name = "technician_id")
     private User technician;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "equipments_orders",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipment_id")
+    )
+    private List<Equipment> equipments;
 }

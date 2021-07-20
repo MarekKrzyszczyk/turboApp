@@ -78,24 +78,24 @@ class PartControllerTest extends IntegrationTestsBase {
                 .andExpect(jsonPath("$.name").value(partDto.getName()));
     }
 
-    @Test
-    void whenPutPart_thenStatus200() throws Exception {
-
-        PartDto partDto = new PartDto();
-        partDto.setName(partName);
-        String partAsJsonString = mapper.writeValueAsString(partDto);
-
-        when(partService.save(any(PartDto.class))).thenReturn(partDto);
-
-        mockMvc.perform(MockMvcRequestBuilders.put(entitiesUrl + entityIdUrl)
-                .with(httpBasic(authenticatedUser.getUsername(), authenticatedUser.getPassword()))
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(partAsJsonString))
-                .andExpect(status().isOk())
-                .andExpect(content()
-                        .contentType("application/json"))
-                .andExpect(jsonPath("$.name").value(partDto.getName()));
-    }
+//    @Test
+//    void whenPutPart_thenStatus200() throws Exception {
+//
+//        PartDto partDto = new PartDto();
+//        partDto.setName(partName);
+//        String partAsJsonString = mapper.writeValueAsString(partDto);
+//
+//        when(partService.save(any(PartDto.class))).thenReturn(partDto);
+//
+//        mockMvc.perform(MockMvcRequestBuilders.put(entitiesUrl + entityIdUrl)
+//                .with(httpBasic(authenticatedUser.getUsername(), authenticatedUser.getPassword()))
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(partAsJsonString))
+//                .andExpect(status().isOk())
+//                .andExpect(content()
+//                        .contentType("application/json"))
+//                .andExpect(jsonPath("$.name").value(partDto.getName()));
+//    }
 
     @Test
     void whenDeletePart_thenStatus200() throws Exception {

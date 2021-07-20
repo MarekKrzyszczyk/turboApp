@@ -1,7 +1,6 @@
 package com.turbo.turbochargerswebservices.controller;
 
 import com.turbo.turbochargerswebservices.model.dto.customer.CustomerDto;
-import com.turbo.turbochargerswebservices.model.entity.Customer;
 import com.turbo.turbochargerswebservices.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,5 +38,3 @@ public class CustomerController {
         return ResponseEntity.ok().build();
     }
 }
-
-

@@ -32,5 +32,3 @@ public class WorkgroupController {
         return new ResponseEntity<>(createdWorkgroup, HttpStatus.CREATED);
     }
 }
-
-

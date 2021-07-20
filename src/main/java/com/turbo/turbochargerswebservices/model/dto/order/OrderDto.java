@@ -1,6 +1,7 @@
 package com.turbo.turbochargerswebservices.model.dto.order;
 
 import com.turbo.turbochargerswebservices.model.dto.AbstractBaseDto;
+import com.turbo.turbochargerswebservices.model.dto.equipment.EquipmentDto;
 import com.turbo.turbochargerswebservices.model.dto.part.PartDto;
 import com.turbo.turbochargerswebservices.model.dto.reason.ReasonDto;
 import com.turbo.turbochargerswebservices.model.dto.status.StatusDto;
@@ -33,4 +34,6 @@ public class OrderDto extends AbstractBaseDto {
     private UserDto seller;
 
     private UserDto technician;
+
+    private List<EquipmentDto> equipments;
 }
