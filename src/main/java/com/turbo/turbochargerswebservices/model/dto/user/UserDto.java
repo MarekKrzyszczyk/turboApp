@@ -5,7 +5,7 @@ import com.turbo.turbochargerswebservices.model.dto.role.RoleDto;
 import com.turbo.turbochargerswebservices.model.dto.workgroup.WorkgroupDto;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 public class UserDto extends AbstractBaseDto {
@@ -16,7 +16,7 @@ public class UserDto extends AbstractBaseDto {
 
     private String lastName;
 
-    private List<RoleDto> roles;
+    private Set<RoleDto> roles;
 
-    private List<WorkgroupDto> workgroups;
+    private Set<WorkgroupDto> workgroups;
 }
