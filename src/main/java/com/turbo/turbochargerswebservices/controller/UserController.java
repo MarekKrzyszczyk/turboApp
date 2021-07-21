@@ -1,7 +1,6 @@
 package com.turbo.turbochargerswebservices.controller;
 
 import com.turbo.turbochargerswebservices.model.dto.user.UserDto;
-import com.turbo.turbochargerswebservices.model.entity.User;
 import com.turbo.turbochargerswebservices.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,21 +20,15 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<List<UserDto>> listAllUsers() {
-        List<UserDto> users = userService.listAllActiveUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
-    }
-
     @PostMapping("/users")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
         UserDto createdUser = userService.save(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<UserDto> deleteUser(@PathVariable Long id) {
-        userService.setDeletedAsTrue(id);
-        return ResponseEntity.ok().build();
-    }
+//    @DeleteMapping("/users/{id}")
+//    public ResponseEntity<UserDto> deleteUser(@PathVariable Long id) {
+//        userService.setDeletedAsTrue(id);
+//        return ResponseEntity.ok().build();
+//    }
 }

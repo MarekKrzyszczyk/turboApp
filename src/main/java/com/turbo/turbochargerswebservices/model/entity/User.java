@@ -1,11 +1,13 @@
 package com.turbo.turbochargerswebservices.model.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "users")
 @Data
@@ -29,15 +31,15 @@ public class User extends AbstractBaseEntity {
     private String password;
 
     @Column
-    private boolean deleted;
+    private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private List<Role> roles;
+    private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -45,5 +47,6 @@ public class User extends AbstractBaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "workgroup_id")
     )
-    private List<Workgroup> workgroups;
+    private Set<Workgroup> workgroups;
 }
+

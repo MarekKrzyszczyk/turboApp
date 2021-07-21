@@ -1,9 +1,12 @@
 package com.turbo.turbochargerswebservices.repository;
 
 import com.turbo.turbochargerswebservices.model.entity.User;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
+@Repository
 public interface UserRepository extends AbstractBaseRepository<User, Long> {
 
-    List<User> findByDeletedFalse();
+    Optional<User> findByUsername(String username);
 }
